@@ -12,7 +12,7 @@ import { LoginComponent } from './login/login.component';
 })
 export class AppComponent {
   title = 'angular-crud';
-  isLogedIn = false;
+  isLogedIn = true;
 
   getLogInState(isLogedIn: boolean) {
     this.isLogedIn = isLogedIn;

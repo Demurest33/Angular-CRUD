@@ -2,12 +2,12 @@ button {
   margin-top: 20px;
   width: 100%;
   height: 40px;
-  background-color: #4caf50;
+  background-color: #2a642d;
   color: white;
   border: none;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #28802c;
 }

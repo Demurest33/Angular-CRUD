@@ -1,28 +1,32 @@
-<section class="wea">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Edad</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (user of users; track user.name) {
-      <tr>
-        <td>{{ user.name }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.age }}</td>
-
-        <td>
-          <div class="actions">
-            <button (click)="deleteUser(user)">Eliminar</button>
-            <button (click)="deleteUser(user)">Eliminar</button>
-          </div>
-        </td>
-      </tr>
-      }
-    </tbody>
-  </table>
-</section>
+<table class="table">
+  <ModalFormComponent
+    [modalUser]="modalUser"
+    [isModalVisible]="isModalVisible"
+    (dataChange)="getModalState($event)"
+  />
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Correo</th>
+      <th>Telefono</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (user of users; track user.name) {
+    <tr>
+      <td>{{ user.name.first }}</td>
+      <td>{{ user.name.last }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phone }}</td>
+      <td>
+        <div class="actions">
+          <button (click)="showModal(user)">Editar</button>
+          <button (click)="deleteUser(user.email)">Eliminar</button>
+        </div>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

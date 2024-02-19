@@ -1,0 +1,10 @@
+dialog {
+  width: 60%;
+  height: 50%;
+  margin: auto auto;
+  padding: 20px;
+  background-color: #262437e3;
+  border: 1px solid #1d1b31;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
