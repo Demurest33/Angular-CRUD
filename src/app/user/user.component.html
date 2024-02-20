@@ -2,7 +2,8 @@
   <ModalFormComponent
     [modalUser]="modalUser"
     [isModalVisible]="isModalVisible"
-    (dataChange)="getModalState($event)"
+    (visibilityChange)="getModalState($event)"
+    (modalUserChange)="getModalUser($event)"
   />
   <thead>
     <tr>

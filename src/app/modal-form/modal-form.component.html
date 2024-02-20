@@ -1,5 +1,45 @@
-<dialog [open]="isModalVisible">
-  <p>This is a dialog for {{ modalUser.name.first }}</p>
+<dialog [open]="isModalVisible" id="EditModal">
+  <p>This is a dialog for {{ modalUser.email }}</p>
+
+  <form>
+    <label for="name">Nombre</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      value="{{ FormUser.name.first }}"
+      [(ngModel)]="FormUser.name.first"
+    />
+
+    <label for="lastName">Apellido</label>
+    <input
+      type="text"
+      id="lastName"
+      name="lastName"
+      value="{{ FormUser.name.last }}"
+      [(ngModel)]="FormUser.name.last"
+    />
+
+    <label for="email">Correo</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      value="{{ FormUser.email }}"
+      [(ngModel)]="FormUser.email"
+    />
+
+    <label for="phone">Telefono</label>
+    <input
+      type="tel"
+      id="phone"
+      name="phone"
+      value="{{ FormUser.phone }}"
+      [(ngModel)]="FormUser.phone"
+    />
+
+    <button type="button" (click)="submitModal()">Guardar</button>
+  </form>
 
   <button (click)="closeModal()">Close</button>
 </dialog>

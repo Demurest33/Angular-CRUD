@@ -86,6 +86,7 @@ export class UserComponent {
 
   isLogedIn = false;
   isModalVisible = false;
+
   modalUser: User = {
     name: { title: '', first: '', last: '' },
     email: '',
@@ -97,14 +98,46 @@ export class UserComponent {
   showModal(user: User) {
     this.isModalVisible = true;
     this.modalUser = user;
+
+    document.addEventListener('click', this.closeModalOutside.bind(this));
+  }
+
+  closeModalOutside(event: MouseEvent): void {
+    const modal = document.getElementById('EditModal') as HTMLDialogElement;
+
+    const target = event.target as HTMLElement;
+
+    // Verifica si el objetivo del clic no es el modal y no es un botón
+    if (
+      target !== modal &&
+      !modal.contains(target) &&
+      target.tagName !== 'BUTTON'
+    ) {
+      this.isModalVisible = false;
+      document.removeEventListener('click', this.closeModalOutside.bind(this));
+    }
   }
 
   getModalState(isModalVisible: boolean) {
     this.isModalVisible = isModalVisible;
   }
 
+  getModalUser(modalUser: User) {
+    //find the user in the array and update it
+    console.log(modalUser);
+
+    const user = this.users.find((u) => u.email === modalUser.email);
+    if (user) {
+      user.name = modalUser.name;
+      user.phone = modalUser.phone;
+      user.name = modalUser.name;
+    }
+  }
+
   deleteUser(email: string) {
-    this.users = this.users.filter((u) => u.email !== email);
+    if (this.isModalVisible) return;
+    if (confirm('¿Estás seguro de que quieres eliminar este usuario?'))
+      this.users = this.users.filter((u) => u.email !== email);
   }
 
   editUser(email: string) {
