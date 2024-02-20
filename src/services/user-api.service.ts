@@ -8,9 +8,9 @@ import { Observable } from 'rxjs';
 export class UserApiService {
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<any> {
+  getUsers(n: number): Observable<any> {
     return this.http.get<any>(
-      'https://randomuser.me/api/?results=6&inc=gender,name,email,phone,picture'
+      `https://randomuser.me/api/?results=${n}&inc=gender,name,email,phone,picture`
     );
   }
 }

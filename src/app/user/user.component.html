@@ -1,33 +1,47 @@
-<table class="table">
-  <ModalFormComponent
-    [modalUser]="modalUser"
-    [isModalVisible]="isModalVisible"
-    (visibilityChange)="getModalState($event)"
-    (modalUserChange)="getModalUser($event)"
-  />
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Apellido</th>
-      <th>Correo</th>
-      <th>Telefono</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (user of users; track user.name) {
-    <tr>
-      <td>{{ user.name.first }}</td>
-      <td>{{ user.name.last }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.phone }}</td>
-      <td>
-        <div class="actions">
-          <button (click)="showModal(user)">Editar</button>
-          <button (click)="deleteUser(user.email)">Eliminar</button>
-        </div>
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
+<section>
+  <table class="table">
+    <ModalFormComponent
+      [modalUser]="modalUser"
+      [isModalVisible]="isModalVisible"
+      (visibilityChange)="getModalState($event)"
+      (modalUserChange)="getModalUser($event)"
+    />
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Correo</th>
+        <th>Telefono</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (user of users; track user.name) {
+      <tr>
+        <td>{{ user.name.first }}</td>
+        <td>{{ user.name.last }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>
+          <div class="actions">
+            <button (click)="showModal(user)">Editar</button>
+            <button (click)="deleteUser(user.email)">Eliminar</button>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <section class="genUsers">
+    <h1>Generar más usuarios</h1>
+
+    <p>
+      Indica la cantidad de usuarios a generar <span>{{ counter }}</span>
+    </p>
+    <div class="buttons">
+      <input type="number" min="0" [(ngModel)]="counter" />
+      <button (click)="generateUsers()">Generate</button>
+    </div>
+  </section>
+</section>

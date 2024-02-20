@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { UserApiService } from '../user-api.service';
+import { UserApiService } from '../../services/user-api.service';
 import { User } from '../user.model';
 import { ModalFormComponent } from '../modal-form/modal-form.component';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'UserComponent',
   standalone: true,
-  imports: [ModalFormComponent],
+  imports: [ModalFormComponent, FormsModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
 })
@@ -80,13 +82,15 @@ export class UserComponent {
   // ];
   users: User[] = [];
   constructor(private userApiService: UserApiService) {
-    this.userApiService.getUsers().subscribe((data) => {
+    this.userApiService.getUsers(6).subscribe((data) => {
+      //6 users for testing
       this.users = data.results;
     });
   }
 
   isLogedIn = false;
   isModalVisible = false;
+  counter = 0;
 
   modalUser: User = {
     name: { title: '', first: '', last: '' },
@@ -150,5 +154,23 @@ export class UserComponent {
 
   login() {
     this.isLogedIn = true;
+  }
+
+  //generate random users
+  generateUsers() {
+    if (this.counter === 0) return;
+    this.userApiService.getUsers(this.counter).subscribe((data) => {
+      this.users = [...this.users, ...data.results];
+      this.counter = 0;
+    });
+  }
+
+  incrementCounter() {
+    this.counter++;
+  }
+
+  decrementCounter() {
+    if (this.counter === 0) return;
+    this.counter--;
   }
 }
