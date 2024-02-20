@@ -22,10 +22,11 @@
 
     <label for="email">Correo</label>
     <input
+      [disabled]="true"
       type="email"
       id="email"
       name="email"
-      value="{{ FormUser.email }}"
+      value="{{ modalUser.email }}"
       [(ngModel)]="FormUser.email"
     />
 
